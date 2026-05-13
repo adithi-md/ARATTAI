@@ -14,10 +14,17 @@ from agents.risk_agent import RiskMonitoringAgent
 
 app = FastAPI(title="ARATTAI Multi-Agent System", version="1.0.0")
 
-# CORS
+# CORS - Allow local development and Vercel deployments
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "https://*.vercel.app",
+        "https://arattai.vercel.app",
+        "https://arattai-*.vercel.app"
+    ],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
